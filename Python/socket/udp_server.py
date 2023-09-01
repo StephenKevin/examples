@@ -10,7 +10,7 @@ while True:
     msg, addr = server_udp.recvfrom(32)
     if addr not in data_cache:
         data_cache[addr] = b''
-    print(f'reveicing from {addr}:', msg)
+    print(f'receiving from {addr}:', msg)
     if msg == b'SIGNAL_FIN':
         back_msg = data_cache[addr].upper()
         server_udp.sendto(back_msg, addr)
