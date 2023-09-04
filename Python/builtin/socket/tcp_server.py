@@ -7,15 +7,15 @@ SERVER_END_LEN = len(SERVER_END)
 
 server_name = ''
 server_port = 12000
-server_addres = (server_name, server_port)
+server_address = (server_name, server_port)
 
 server_tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-server_tcp.bind(server_addres)
+server_tcp.bind(server_address)
 
 server_tcp.listen(10)
 
-print('Server started! Bind on', server_addres)
+print('Server started! Bind on', server_address)
 
 data_cache = dict()
 while True:
@@ -25,7 +25,8 @@ while True:
         data_cache[addr] = b''
 
     while True:
-        msg = connection.recv(32)   # data stream. You can set any amount bytes as you like
+        # data stream. You can set any amount bytes as you like
+        msg = connection.recv(32)
         print('Received', msg)
         data_cache[addr] += msg
         if data_cache[addr].endswith(CLIENT_END):
